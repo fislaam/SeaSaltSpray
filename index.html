@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>SURAI Sea Salt Spray</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bar"></div>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <filter id="liquid" x="-5%" y="-10%" width="110%" height="120%">
+        <feTurbulence
+          id="turb"
+          type="fractalNoise"
+          baseFrequency="0.012 0.03"
+          numOctaves="2"
+          seed="4"
+        />
+        <feDisplacementMap id="disp" in="SourceGraphic" scale="0" />
+      </filter>
+    </svg>
+
+    <header>
+      <div class="wrap">
+        <a class="logo" href="#top">SURAI</a
+        ><button class="cartbtn" id="openCart">
+          Keranjang<b id="count">0</b>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap">
+          <div>
+            <h1 id="h1">Rambut berombak, bau laut.</h1>
+            <p class="lead">
+              Sea Salt Spray dengan garam laut dan minyak jojoba. Semprot,
+              remas, biarkan kering. Hasilnya wave lembut yang tidak kaku dan
+              tidak lengket.
+            </p>
+            <div class="price">
+              <strong>Rp149.000</strong><s>Rp189.000</s
+              ><a class="btn" href="#beli">Beli sekarang</a>
+            </div>
+          </div>
+          <div class="stage" id="stage">
+            <svg
+              viewBox="0 0 200 440"
+              role="img"
+              aria-label="Botol SURAI Sea Salt Spray"
+            >
+              <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#f3edde" />
+                  <stop offset=".45" stop-color="#f8f2e5" />
+                  <stop offset="1" stop-color="#efe7d5" />
+                </linearGradient>
+              </defs>
+              <ellipse
+                cx="100"
+                cy="428"
+                rx="78"
+                ry="9"
+                fill="var(--cap)"
+                opacity=".18"
+              />
+              <path d="M92 50h16v34H92z" fill="var(--cap)" />
+              <path
+                d="M62 22h76a8 8 0 0 1 8 8v8a8 8 0 0 1-8 8H62a8 8 0 0 1-8-8v-8a8 8 0 0 1 8-8z"
+                fill="var(--cap)"
+              />
+              <path
+                d="M54 28H40a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4h14z"
+                fill="var(--cap)"
+              />
+              <circle id="tip" cx="36" cy="34" r="2" fill="none" />
+              <rect
+                x="64"
+                y="80"
+                width="72"
+                height="20"
+                rx="4"
+                fill="var(--cap)"
+              />
+              <path
+                d="M44 120a24 24 0 0 1 24-24h64a24 24 0 0 1 24 24v280a22 22 0 0 1-22 22H66a22 22 0 0 1-22-22z"
+                fill="url(#g)"
+              />
+              <path
+                d="M58 118v270"
+                stroke="#fdf9ee"
+                stroke-width="5"
+                stroke-linecap="round"
+                opacity=".6"
+              />
+              <rect
+                x="62"
+                y="190"
+                width="76"
+                height="150"
+                rx="8"
+                fill="#fdf9ee"
+              />
+              <text
+                x="100"
+                y="236"
+                text-anchor="middle"
+                font-family="Bricolage Grotesque,sans-serif"
+                font-weight="800"
+                font-size="19"
+                letter-spacing="5"
+                fill="#1c4b44"
+              >
+                SURAI
+              </text>
+              <path
+                d="M72 262q7-8 14 0t14 0 14 0 14 0"
+                fill="none"
+                stroke="#1c4b44"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <text
+                x="100"
+                y="290"
+                text-anchor="middle"
+                font-family="Bricolage Grotesque,sans-serif"
+                font-size="9.5"
+                letter-spacing="1.5"
+                fill="#1c4b44"
+              >
+                SEA SALT SPRAY
+              </text>
+              <text
+                x="100"
+                y="322"
+                text-anchor="middle"
+                font-family="Bricolage Grotesque,sans-serif"
+                font-size="8.5"
+                fill="#1c4b44"
+                opacity=".7"
+              >
+                150 ml
+              </text>
+            </svg>
+            <button
+              class="btn ghost"
+              id="spray"
+              style="position: absolute; bottom: 0; right: 0"
+            >
+              Semprot
+            </button>
+            <canvas id="mist"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="wave">
+        <div class="wrap row">
+          <div>
+            <h2>Pilih seberapa berombak.</h2>
+            <input
+              type="range"
+              id="amp"
+              min="0"
+              max="100"
+              value="55"
+              aria-label="Tingkat gelombang rambut"
+            />
+            <div class="mood" id="mood"></div>
+            <p id="dose" style="opacity: 0.75"></p>
+          </div>
+          <svg
+            class="strands"
+            id="strands"
+            viewBox="0 0 600 260"
+            aria-hidden="true"
+          ></svg>
+        </div>
+      </section>
+
+      <section class="ing">
+        <div class="wrap">
+          <h2>Tiga bahan, tanpa drama.</h2>
+          <div class="grid3">
+            <div class="card">
+              <h3>Garam laut</h3>
+              <p>
+                Memberi tekstur dan menahan bentuk, seperti rambut setelah
+                seharian di pantai.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Minyak jojoba</h3>
+              <p>Menjaga helai tetap lembut supaya tidak kering atau kaku.</p>
+            </div>
+            <div class="card">
+              <h3>Aloe vera</h3>
+              <p>Menenangkan kulit kepala dan membuat rambut tidak lengket.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="buy" id="beli">
+        <div class="wrap box">
+          <div>
+            <h2>Satu botol, satu gaya baru.</h2>
+            <p style="margin-top: 18px; max-width: 38ch; opacity: 0.85">
+              Gratis ongkir mulai 2 botol. Kirim ke seluruh Indonesia, tiba 2
+              sampai 4 hari.
+            </p>
+          </div>
+          <div class="panel">
+            <strong>Ukuran</strong>
+            <div class="opts" id="sizes">
+              <button
+                class="opt"
+                data-p="99000"
+                data-n="100 ml"
+                aria-pressed="false"
+              >
+                100 ml<br /><small>Rp99.000</small>
+              </button>
+              <button
+                class="opt"
+                data-p="149000"
+                data-n="150 ml"
+                aria-pressed="true"
+              >
+                150 ml<br /><small>Rp149.000</small>
+              </button>
+              <button
+                class="opt"
+                data-p="239000"
+                data-n="250 ml"
+                aria-pressed="false"
+              >
+                250 ml<br /><small>Rp239.000</small>
+              </button>
+            </div>
+            <label class="sub"
+              ><input type="checkbox" id="subs" /> Langganan tiap bulan, hemat
+              10%</label
+            >
+            <div style="display: flex; align-items: center">
+              <div class="qty">
+                <button id="minus" aria-label="Kurangi">&minus;</button
+                ><span id="q" aria-live="polite">1</span
+                ><button id="plus" aria-label="Tambah">+</button>
+              </div>
+              <strong id="total" style="font-size: 22px"></strong>
+            </div>
+            <button class="btn" id="add">Tambah ke keranjang</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="rev">
+        <div class="wrap">
+          <div class="grid3">
+            <blockquote>
+              Rambut lurusku jadi punya gelombang halus dalam 10 menit. Tidak
+              lengket sama sekali.<cite>Nadya, Bandung</cite>
+            </blockquote>
+            <blockquote>
+              Wanginya seperti habis dari Pantai Pandawa. Dipakai tiap hari ke
+              kantor.<cite>Raka, Jakarta</cite>
+            </blockquote>
+            <blockquote>
+              Kering natural, bentuk tahan sampai sore. Sudah repurchase tiga
+              kali.<cite>Sinta, Surabaya</cite>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap">SURAI. &copy; 2026</div>
+    </footer>
+
+    <aside class="drawer" id="drawer" aria-label="Keranjang" aria-hidden="true">
+      <div class="top">
+        <h3 style="font-size: 26px">Keranjang</h3>
+        <button class="x" id="closeCart" aria-label="Tutup">&times;</button>
+      </div>
+      <div id="lines" style="flex: 1; overflow: auto"></div>
+      <div class="line" style="border: 0">
+        <strong>Total</strong><strong id="sum">Rp0</strong>
+      </div>
+      <button class="btn" id="checkout">Bayar</button>
+    </aside>
+    <div class="toast" id="toast" role="status"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
